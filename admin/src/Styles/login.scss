@@ -1,0 +1,46 @@
+// Define your main colors and background image path
+$primary-color: #3f51b5;
+$secondary-color: #f50057;
+$text-color: #fff;  // White text for better visibility on darker backgrounds
+$background-image: url('../images/login.jpg');
+
+// Global background
+.login-container {
+ // background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), $background-image;
+  background-size: cover;
+  background-position: center;
+  color: $text-color;
+
+  // Ensuring text and icons are visible against a dark background
+  .MuiInputBase-root {
+    color: $text-color;
+  }
+
+  .MuiInputLabel-root {
+    color: rgba(255, 255, 255, 0.7);  // Lighter text for input labels
+  }
+
+  .MuiInput-underline:after, .MuiInput-underline:before {
+    border-bottom-color: $text-color;
+  }
+
+  .MuiButton-root {
+    color: $text-color;
+  }
+}
+
+// Paper component with a translucent background to make sure content is readable
+.login-paper {
+  background-color: rgba(255, 255, 255, 0.8);  // Semi-transparent white
+  backdrop-filter: blur(5px);  // Applying a blur effect to the background elements of the card
+}
+
+// Button customization for better visibility and interactivity
+.styled-button {
+  background-color: $primary-color;
+  color: $text-color;
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+}

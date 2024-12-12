@@ -1,0 +1,174 @@
+// Variables
+$primary-color: #FF5A5F;
+$secondary-color: #4a6563;
+$background-color: #F7F7F7;
+$text-color: #484848;
+$header-font: 'Circular', -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+$body-font: 'Roboto', Arial, sans-serif;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+// Global Styles
+body {
+  font-family: $body-font;
+  color: $text-color;
+  background-color: $background-color;
+  line-height: 1.43;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font;
+}
+
+// Header
+.header {
+  background-color: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  
+  &__nav {
+    @include flex-center;
+    justify-content: space-between;
+    padding: 16px 80px;
+  }
+  
+  &__logo {
+    height: 32px;
+  }
+}
+
+// Hero Section
+.hero {
+  background-image: url('path/to/hero-image.jpg');
+  background-size: cover;
+  height: 80vh;
+  @include flex-center;
+  
+  &__content {
+    text-align: center;
+    color: #fff;
+  }
+  
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// Search Component
+.search {
+  background-color: #fff;
+  border-radius: 32px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  padding: 14px 32px;
+  
+  &__input {
+    border: none;
+    font-size: 14px;
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  &__button {
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 20px;
+    cursor: pointer;
+    @include transition;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// Room Cards
+.room-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  @include transition(transform);
+  
+  &:hover {
+    transform: translateY(-4px);
+  }
+  
+  &__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  &__content {
+    padding: 24px;
+  }
+  
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  &__price {
+    font-weight: 800;
+    color: $secondary-color;
+  }
+}
+
+// Footer
+.footer {
+  background-color: #fff;
+  padding: 48px 0;
+  
+  &__links {
+    display: flex;
+    justify-content: space-around;
+    
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    li {
+      margin-bottom: 12px;
+    }
+    
+    a {
+      color: $text-color;
+      text-decoration: none;
+      @include transition(color);
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .header__nav {
+    padding: 16px 24px;
+  }
+  
+  .hero__title {
+    font-size: 2rem;
+  }
+  
+  .search {
+    flex-direction: column;
+    padding: 14px;
+  }
+}

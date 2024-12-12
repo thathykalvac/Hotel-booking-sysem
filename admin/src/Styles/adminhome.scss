@@ -1,0 +1,172 @@
+// adminhome.scss
+
+// Color Palette
+$color-primary: #3498db;      // Vibrant Blue
+$color-secondary: #2ecc71;    // Fresh Green
+$color-accent: #e74c3c;       // Passionate Red
+$color-background: #f0f4f8;   // Soft Blue-Gray
+$color-card-bg: #ffffff;      // Pure White
+$color-text-dark: #2c3e50;    // Deep Navy
+$color-text-light: #34495e;   // Soft Navy
+
+// Gradient Colors
+$gradient-primary: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+$gradient-secondary: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+$gradient-accent: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin card-shadow {
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.1), 
+    0 6px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@mixin hover-effect {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 20px 30px rgba(0, 0, 0, 0.15), 
+    0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+// Global Styles
+body {
+  background-color: $color-background;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+// Container Styles
+.MuiContainer-root {
+  background: linear-gradient(to right, #f5f7fa, #f0f4f8);
+  padding: 2rem;
+  border-radius: 15px;
+}
+
+// Typography
+.MuiTypography-h4 {
+    background: $gradient-primary;
+    -webkit-background-clip: text;
+    background-clip: text;  // Add this line
+    -webkit-text-fill-color: transparent;
+    color: transparent;  // Add this for better cross-browser support
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 2rem;
+  }
+
+// Card Styles
+.MuiCard-root {
+  @include card-shadow;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: $color-card-bg;
+  
+  &:hover {
+    @include hover-effect;
+    
+    .MuiCardContent-root {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.MuiCardContent-root {
+  @include flex-center;
+  flex-direction: column;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+
+  .MuiTypography-h5 {
+    color: $color-text-light;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .MuiTypography-h6 {
+    color: $color-primary;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+}
+
+// Chart Styles
+.chart-container {
+  background: $color-card-bg;
+  border-radius: 15px;
+  @include card-shadow;
+  padding: 1rem;
+  margin-top: 1rem;
+
+  .MuiTypography-h6 {
+    color: $color-text-dark;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+}
+
+// Recharts Customization
+.recharts-wrapper {
+  .recharts-surface {
+    overflow: visible;
+  }
+
+  .recharts-tooltip-wrapper {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.MuiGrid-item {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+// Responsive Design
+@media (max-width: 960px) {
+  .MuiGrid-item {
+    margin-bottom: 1rem;
+  }
+}
+
+// Loading & Error States
+.MuiCircularProgress-root {
+  color: $color-primary !important;
+  display: block;
+  margin: 2rem auto;
+}
+
+.MuiAlert-root {
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 10px;
+}
+
+// Pie Chart Cell Colors
+.recharts-pie-sector {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}

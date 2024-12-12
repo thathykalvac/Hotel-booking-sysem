@@ -1,0 +1,217 @@
+// Variables
+$primary-color: #1a4a8d;
+$secondary-color: #f8f9fa;
+$accent-color: #9cafe0;
+$text-color: #333;
+$light-gray: #f1f3f5;
+$transition-speed: 0.3s;
+
+// Mixins
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+// Global styles
+body {
+  font-family: 'Poppins', sans-serif;
+  color: $text-color;
+  background-color: $secondary-color;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Hero section
+.hero-section {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: $primary-color;
+  color: $secondary-color;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(26, 74, 141, 0.6), rgba(26, 74, 141, 0.3));
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    //background: url('path/to/water-texture.png') repeat;
+    opacity: 0.1;
+    animation: waterFlow 10s linear infinite;
+    z-index: -1;
+  }
+  
+  h1 {
+    font-size: 4rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: float 3s ease-in-out infinite, fadeInDown 1s ease-out;
+    color: $accent-color;
+  }
+  
+  p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: float 3s ease-in-out infinite, fadeInUp 1s ease-out 0.5s both;
+  }
+}
+
+.search-form {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+  border-radius: 15px;
+  @include box-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+  animation: float 3s ease-in-out infinite, fadeIn 1s ease-out 1s both;
+  
+  .form-control, .input-group-text {
+    border: none;
+    @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    background-color: rgba(255, 255, 255, 0.2);
+    color: $secondary-color;
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+  
+  .btn-primary {
+    background-color: $accent-color;
+    border-color: $accent-color;
+    color: $primary-color;
+    @include transition(all $transition-speed ease);
+    
+    &:hover {
+      background-color: darken($accent-color, 10%);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Carousel
+.carousel {
+  @include box-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
+  border-radius: 15px;
+  overflow: hidden;
+  
+  .carousel-item {
+    img {
+      @include transition(transform 0.5s ease);
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+  
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 1.5rem;
+    
+    h3 {
+      font-weight: 600;
+    }
+  }
+}
+
+// Map styles
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes waterFlow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .hero-section {
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    p {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .search-form {
+    padding: 1.5rem;
+  }
+}
